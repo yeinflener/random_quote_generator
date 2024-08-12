@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Random List of Cat Quotes</title>
+</head>
+<style>
+  body {
+    background-color: rgb(250, 243, 219);
+  }
+
+  button {
+    padding: 10px;
+    border: none;
+    background-color:tomato;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  h1 {
+    margin-top: 10px;
+    color: brown;
+  }
+
+  #results {
+    /*border: 1px solid brown;*/
+    font-size: 1.4rem;
+    font-style: italic;
+    color: brown;
+    padding: 5px;
+    width: 60%;
+    margin: auto;
+  }
+  @media only screen and (max-width: 768px) {
+  #results {
+    width: 80%;
+  }
+}
+
+</style>
+<body>
+
+  <script>    
+    //Display Random list of Cat Quotes
+    //https://meowfacts.herokuapp.com
+    function catQuotes() {
+            //https://github.com/wh-iterabb-it/meowfacts?ref=public_apis
+            const xhr = new XMLHttpRequest();
+
+            xhr.addEventListener('readystatechange', function () {
+                if (this.readyState === this.DONE) {
+                    //Output the results to the console
+                    //console.log(this.responseText);
+
+                    //Parse the response from the API from JSON
+                    const data = JSON.parse(this.responseText).data;
+                    console.log(data);
+                    //Display random cat quotes on the webpage
+                    document.getElementById("results").innerHTML = data[0];
+                }
+            });
+
+            xhr.open('GET', '	https://meowfacts.herokuapp.com/?count=15');
+            xhr.send();
+        }
+    </script>
+    <center>
+    <h1>Cat Quotes</h1>    
+    <button onclick="catQuotes()">Click for random Cat Quotes</button></br>
+    <br>
+    <div id="results"></div>
+    <br>
+
+    <iframe src="catwink.gif" width="500" height="500" frameBorder="0" class="giphy-embed"></iframe>
+    </center>
+</body>
+</htm
